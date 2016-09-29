@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animate</title>
+    <style type="text/css">
+        .box{
+            position: relative;
+            height: 300px;
+            width: 180px;
+            left: 50%;
+            margin-left: -90px;
+        }
+        .box-inner{
+            position: absolute;
+            height: 300px;
+            width: 180px;
+            background: url(img/charector.png) 0 0 no-repeat;
+            -webkit-animation-iteration-count: infinite;
+            -moz-animation-iteration-count: infinite;
+            -o-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: step-start;
+            -moz-animation-timing-function: step-start;
+            -o-animation-timing-function: step-start;
+            animation-timing-function: step-start;
+        }
+        .run-fast,.run-xfast,.run-normal,.run-slow,.run-btn{
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            background: #cccccc;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+        }
+        @keyframes run-xfast {
+            0% {background-position: 0 0;}
+            14.3% {background-position: -180px 0}
+            28.6% {background-position: -360px 0}
+            42.9% {background-position: -540px 0}
+            57.1% {background-position: -720px 0}
+            71.4% {background-position: -900px 0}
+            85.7% {background-position: -1080px 0}
+        }
+        .xfast .box-inner{
+            animation-name: run-xfast;
+            animation-duration: .2s;
+        }
+        .fast .box-inner{
+            animation-name: run-fast;
+            animation-duration: .5s;
+        }
+        .normal .box-inner{
+            animation-name: run-normal;
+            animation-duration: .8s;
+        }
+        .slow .box-inner{
+            animation-name: run-slow;
+            animation-duration: 1s;
+        }
+        .btn .box-inner{
+            animation-play-state: paused;
+        }
+        @keyframes run-fast {
+            0% {background-position: 0 0;}
+            14.3% {background-position: -180px 0}
+            28.6% {background-position: -360px 0}
+            42.9% {background-position: -540px 0}
+            57.1% {background-position: -720px 0}
+            71.4% {background-position: -900px 0}
+            85.7% {background-position: -1080px 0}
+        }
+        @keyframes run-normal {
+            0% {background-position: 0 0;}
+            14.3% {background-position: -180px 0}
+            28.6% {background-position: -360px 0}
+            42.9% {background-position: -540px 0}
+            57.1% {background-position: -720px 0}
+            71.4% {background-position: -900px 0}
+            85.7% {background-position: -1080px 0}
+        }
+        @keyframes run-slow {
+            0% {background-position: 0 0;}
+            14.3% {background-position: -180px 0}
+            28.6% {background-position: -360px 0}
+            42.9% {background-position: -540px 0}
+            57.1% {background-position: -720px 0}
+            71.4% {background-position: -900px 0}
+            85.7% {background-position: -1080px 0}
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box-inner">
+        </div>
+    </div>
+    <a class="run-xfast">最快</a>
+    <a class="run-fast">快</a>
+    <a class="run-normal">正常</a>
+    <a class="run-slow">慢</a>
+    <button class="run-btn">暂停</button>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script>
+        $(function(){
+            $('a').on('click',function(e){
+                console.log($(e.target));
+                $('.box-inner').removeClass('paused');
+                console.log($('.box').attr('class'));
+                $('.box').attr('class', $(e.target).attr('class').split('-')[1]);
+            });
+            $('.run-btn').click(function(){
+                $('.box-inner').addClass('paused');
+            });
+        })
+    </script>
+</body>
+</html>
